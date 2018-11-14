@@ -2,10 +2,12 @@ package datnt.gmoz.com;
 
 import org.lwjgl.opengl.Display;
 
+import datnt.gmoz.com.model.ModelBase;
 import datnt.gmoz.com.renderer.DisplayManager;
 import datnt.gmoz.com.renderer.Loader;
 import datnt.gmoz.com.renderer.RawModel;
 import datnt.gmoz.com.renderer.Renderer;
+import datnt.gmoz.com.renderer.texture.ModelTexture;
 import datnt.gmoz.com.shader.StaticShader;
 
 /**
@@ -44,7 +46,17 @@ public class MainGame {
             
         };
         
-        RawModel model = loader.loadToVAO(vertices, indices);
+        float[] textureCoords = {
+            0, 0, 
+            0, 1, 
+            1, 1, 
+            1, 0
+        };
+        
+        RawModel model = loader.loadToVAO(vertices, textureCoords, indices);
+        ModelTexture modelTexture = new ModelTexture(loader.loadTexture("image"));
+        
+        ModelBase modelBase = new ModelBase(model, modelTexture);
         
         while (!Display.isCloseRequested()) {
             
@@ -56,7 +68,7 @@ public class MainGame {
             staticShader.start();
             
             //TODO: render
-            renderer.render(model);
+            renderer.render(modelBase);
             
             //TODO: stop shader
             staticShader.stop();

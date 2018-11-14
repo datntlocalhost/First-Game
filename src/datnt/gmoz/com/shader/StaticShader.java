@@ -15,5 +15,6 @@ public class StaticShader extends ShaderManager {
     @Override
     protected void bindAttributes() {
         super.bindAttribute(CommonConstants.INT_ZERO, CommonConstants.STR_POSITION);
+        super.bindAttribute(CommonConstants.INT_ONE, CommonConstants.STR_TEXTURE_COORDS);
     }
 }
