@@ -17,7 +17,12 @@ public class Constants {
     /** The Constant INT_ZERO. */
     public static final int    INT_ZERO                                 = 0;
 
+    /** The Constant INT_NUM_VERTEX. */
+    public static final int    INT_NUM_COOR_VERTEX                      = 3;
+    
     /** The Constant STR_GAME_TITLE. */
     public static final String STR_GAME_TITLE                           = "First Game";
+    
+    
 
 }

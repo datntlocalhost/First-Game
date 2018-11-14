@@ -1,4 +1,4 @@
-package datnt.gmoz.com.render;
+package datnt.gmoz.com.renderer;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.ContextAttribs;
