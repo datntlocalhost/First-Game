@@ -1,6 +1,7 @@
 package datnt.gmoz.com.renderer;
 
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.lwjgl.opengl.GL30;
 
 import datnt.gmoz.com.common.Constants;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Loader.
  */
@@ -38,6 +40,26 @@ public class Loader {
         unbindVAO();
 
         return new RawModel(vaoId, positions.length / Constants.INT_NUM_COOR_VERTEX);
+    }
+    
+    /**
+     * Load to VAO.
+     *
+     * @param positions the positions
+     * @param indices the indices
+     * @return the raw model
+     */
+    public RawModel loadToVAO(float[] positions, int[] indices) {
+        
+        int vaoId = createVAO();
+
+        bindIndicesBuffer(indices);
+        
+        storeDataToAttributeList(Constants.INT_ZERO, positions);
+
+        unbindVAO();
+
+        return new RawModel(vaoId, indices.length);
     }
     
     /**
@@ -98,6 +120,23 @@ public class Loader {
 
         GL30.glBindVertexArray(Constants.INT_ZERO);
     }
+    
+    /**
+     * Bind indices buffer.
+     *
+     * @param indices the indices
+     */
+    private void bindIndicesBuffer(int[] indices) {
+        
+        int vboId = GL15.glGenBuffers();
+        
+        vbos.add(vboId);
+        GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboId);
+        
+        IntBuffer buffer = storeDataInIntBuffer(indices);
+        
+        GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
+    }
 
     /**
      * Store data in float buffer.
@@ -115,6 +154,21 @@ public class Loader {
         return buffer;
     }
 
+    /**
+     * Store data in int buffer.
+     *
+     * @param data the data
+     * @return the int buffer
+     */
+    private IntBuffer storeDataInIntBuffer(int[] data) {
+        
+        IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
+        
+        buffer.put(data);
+        buffer.flip();
+        
+        return buffer;
+    }
     /**
      * Gets the vaos.
      *

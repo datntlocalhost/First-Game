@@ -32,7 +32,8 @@ public class Renderer {
         GL20.glEnableVertexAttribArray(Constants.INT_ZERO);
 
         // Render triangles with the data should start is zero and the number of vertex is vertexCount
-        GL11.glDrawArrays(GL11.GL_TRIANGLES, Constants.INT_ZERO, model.getVertexCount());
+        // GL11.glDrawArrays(GL11.GL_TRIANGLES, Constants.INT_ZERO, model.getVertexCount());
+        GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, Constants.INT_ZERO);
         
         // Disable attribute list after render
         GL20.glDisableVertexAttribArray(Constants.INT_ZERO);
