@@ -6,6 +6,7 @@ import datnt.gmoz.com.renderer.DisplayManager;
 import datnt.gmoz.com.renderer.Loader;
 import datnt.gmoz.com.renderer.RawModel;
 import datnt.gmoz.com.renderer.Renderer;
+import datnt.gmoz.com.shader.StaticShader;
 
 /**
  * The Class MainGame.
@@ -24,6 +25,8 @@ public class MainGame {
         Loader loader = new Loader();
         
         Renderer renderer = new Renderer();
+        
+        StaticShader staticShader = new StaticShader();
         
         float[] vertices = {
 
@@ -49,12 +52,19 @@ public class MainGame {
 
             //TODO: game logic
             
+            //TODO: start shader
+            staticShader.start();
+            
             //TODO: render
             renderer.render(model);
+            
+            //TODO: stop shader
+            staticShader.stop();
             
             DisplayManager.update();
         }
 
+        staticShader.cleanUp();
         loader.cleanUp();
         
         DisplayManager.close();

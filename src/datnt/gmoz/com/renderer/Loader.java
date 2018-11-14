@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
-import datnt.gmoz.com.common.Constants;
+import datnt.gmoz.com.common.CommonConstants;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,11 +35,11 @@ public class Loader {
 
         int vaoId = createVAO();
 
-        storeDataToAttributeList(Constants.INT_ZERO, positions);
+        storeDataToAttributeList(CommonConstants.INT_ZERO, positions);
 
         unbindVAO();
 
-        return new RawModel(vaoId, positions.length / Constants.INT_NUM_COOR_VERTEX);
+        return new RawModel(vaoId, positions.length / CommonConstants.INT_NUM_COOR_VERTEX);
     }
     
     /**
@@ -55,7 +55,7 @@ public class Loader {
 
         bindIndicesBuffer(indices);
         
-        storeDataToAttributeList(Constants.INT_ZERO, positions);
+        storeDataToAttributeList(CommonConstants.INT_ZERO, positions);
 
         unbindVAO();
 
@@ -109,8 +109,8 @@ public class Loader {
         FloatBuffer buffer = storeDataInFloatBuffer(data);
         
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
-        GL20.glVertexAttribPointer(attributeNumber, 3, GL11.GL_FLOAT, false, Constants.INT_ZERO, Constants.INT_ZERO);
-        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, Constants.INT_ZERO);
+        GL20.glVertexAttribPointer(attributeNumber, 3, GL11.GL_FLOAT, false, CommonConstants.INT_ZERO, CommonConstants.INT_ZERO);
+        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, CommonConstants.INT_ZERO);
     }
 
     /**
@@ -118,7 +118,7 @@ public class Loader {
      */
     private void unbindVAO() {
 
-        GL30.glBindVertexArray(Constants.INT_ZERO);
+        GL30.glBindVertexArray(CommonConstants.INT_ZERO);
     }
     
     /**

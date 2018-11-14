@@ -7,7 +7,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
-import datnt.gmoz.com.common.Constants;
+import datnt.gmoz.com.common.CommonConstants;
 
 /**
  * The Class DisplayManager.
@@ -23,16 +23,16 @@ public class DisplayManager {
 
             ContextAttribs attribs = new ContextAttribs(3, 2).withForwardCompatible(true).withProfileCore(true);
 
-            Display.setDisplayMode(new DisplayMode(Constants.INT_WIDTH_SCREEN, Constants.INT_HEIGHT_SCREEN));
+            Display.setDisplayMode(new DisplayMode(CommonConstants.INT_WIDTH_SCREEN, CommonConstants.INT_HEIGHT_SCREEN));
             Display.create(new PixelFormat(), attribs);
-            Display.setTitle(Constants.STR_GAME_TITLE);
+            Display.setTitle(CommonConstants.STR_GAME_TITLE);
 
         } catch (LWJGLException e) {
             e.printStackTrace();
         }
 
-        GL11.glViewport(Constants.INT_ZERO, Constants.INT_ZERO, Constants.INT_WIDTH_SCREEN,
-                        Constants.INT_HEIGHT_SCREEN);
+        GL11.glViewport(CommonConstants.INT_ZERO, CommonConstants.INT_ZERO, CommonConstants.INT_WIDTH_SCREEN,
+                        CommonConstants.INT_HEIGHT_SCREEN);
     }
 
     /**
@@ -40,7 +40,7 @@ public class DisplayManager {
      */
     public static void update() {
 
-        Display.sync(Constants.INT_FPS_CAP);
+        Display.sync(CommonConstants.INT_FPS_CAP);
         Display.update();
     }
 
